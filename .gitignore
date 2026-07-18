@@ -1,0 +1,36 @@
+# === JAVA / SPRING BOOT ===
+target/
+!.mvn/wrapper/maven-wrapper.jar
+## IDEs
+.idea/
+*.class
+*.md5
+*.sha1
+.classpath
+.project
+.settings/
+bin/
+
+# === ANGULAR / NODE ===
+node_modules/
+/dist
+/tmp
+/out-tsc
+.bazeloutput
+## Logi i cache
+npm-debug.log
+yarn-error.log
+.pnpm-debug.log
+.angular/
+
+# === TERRAFORM ===
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.tfvars.json
+.terraform.lock.hcl
+
+# === SYSTEMOWE ===
+.DS_Store
+Thumbs.db

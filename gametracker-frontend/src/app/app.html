@@ -6,23 +6,30 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- html-Language-Service-Context: ./app.ts -->
+<!-- @Component: App -->
+
 <div style="text-align: center; margin-top: 50px; font-family: Arial, sans-serif;">
   <h1>Witamy w GameTracker!</h1>
 
-  @if (gameData()) {
-  <div style="border: 2px solid #333; padding: 20px; display: inline-block; border-radius: 8px; background-color: #f9f9f9;">
-    <h2>{{ gameData()?.title }}</h2>
+  <!-- 🔬 Używamy tagu kontenera, który sprawdza obecność danych i wstrzykuje odpowiedni szablon -->
+  <ng-container *ngIf="gameData(); else loadingTpl">
+    <div style="border: 2px solid #333; padding: 20px; display: inline-block; border-radius: 8px; background-color: #f9f9f9;">
+      <h2>{{ gameData()?.title }}</h2>
       <p><strong>Deweloper:</strong> {{ gameData()?.developer }}</p>
       <p><strong>Ocena Społeczności:</strong> ⭐ {{ gameData()?.rating }}/10</p>
       <p style="max-width: 400px; margin: 0 auto; font-style: italic;">
-  {{ gameData()?.review }}
-  </p>
-</div>
-  } @else {
-  <div>
-    <p>Oczekiwanie na odpowiedź serwera Spring Boot (Port 8080)...</p>
-  </div>
-  }
+        {{ gameData()?.review }}
+      </p>
+    </div>
+  </ng-container>
+
+
+  <ng-template #loadingTpl>
+    <div>
+      <p>Oczekiwanie na odpowiedź serwera Spring Boot (Port 8080)...</p>
+    </div>
+  </ng-template>
 </div>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->

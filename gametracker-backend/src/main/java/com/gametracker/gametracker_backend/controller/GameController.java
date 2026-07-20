@@ -1,10 +1,13 @@
 package com.gametracker.gametracker_backend.controller;
 
+import com.gametracker.gametracker_backend.model.Game;
+import com.gametracker.gametracker_backend.repository.GameRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.Map;
+
+import java.util.List;
 
 @RestController
 
@@ -17,15 +20,14 @@ import java.util.Map;
 // Jako przyszły DevSecOps musisz wiedzieć, że gwiazdka (*) oznacza "pozwól każdemu na świecie" – na tym etapie to dopuszczalne, ale na produkcji to krytyczny błąd bezpieczeństwa. Zmienimy to później.
 public class GameController {
 
-    @GetMapping("/mgs")
-    // INŻYNIERIA: Mapujemy konkretną metodę HTTP GET na podścieżkę /mgs. Full URL to: http://localhost:8080/api/games/mgs
-    public Map<String, Object> getMGSInfo() {
-        // Zwracamy strukturę Map (klucz-wartość), imitując dane, które docelowo wyciągniemy z bazy PostgreSQL
-        return Map.of(
-                "title", "Metal Gear Solid",
-                "developer", "Konami",
-                "rating", 9.5,
-                "review", "Absolutne arcydzieło Hideo Kojimy. Klasyka gatunku stealth-action."
-        );
+    private final GameRepository gameRepository;
+
+    public GameController(GameRepository gameRepository) {
+        this.gameRepository = gameRepository;
+    }
+
+    @GetMapping
+    public List<Game> getAllGames() {
+        return gameRepository.findAll();
     }
 }

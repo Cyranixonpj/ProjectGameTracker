@@ -1,5 +1,9 @@
 package com.gametracker.gametracker_backend.model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name= "games")
@@ -8,11 +12,17 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Title is mandatory")
     private String title;
+
+    @NotBlank(message = "Developer is mandatory")
     private String developer;
+
+    @Min(value = 0, message = "Rating must be between 0 and 10")
+    @Max(value = 10, message = "Rating must be between 0 and 10")
     private double rating;
 
-    @Column(length = 1000)
+    @Size(max = 1000, message = "Review cannot exceed 1000 characters")
     private String review;
 
 

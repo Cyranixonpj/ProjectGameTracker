@@ -15,7 +15,7 @@ export class App implements OnInit {
   private http = inject(HttpClient);
   ngOnInit() {
 
-    this.http.get('http://localhost:8080/api/games/mgs').subscribe({
+    this.http.get('http://localhost:8081/api/games').subscribe({
       next: (data) => {
 
         this.gameData.set(data);

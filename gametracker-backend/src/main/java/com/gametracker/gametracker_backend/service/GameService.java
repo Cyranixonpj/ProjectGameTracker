@@ -1,5 +1,6 @@
 package com.gametracker.gametracker_backend.service;
 
+import com.gametracker.gametracker_backend.exception.GameNotFoundException;
 import com.gametracker.gametracker_backend.model.Game;
 import com.gametracker.gametracker_backend.repository.GameRepository;
 
@@ -31,7 +32,7 @@ public class GameService {
 
     public void updateGame(Long id, Game updatedGame) {
         Game existingGame = gameRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Game not found with id: " + id));
+                .orElseThrow(() -> new GameNotFoundException(id));
 
         existingGame.setTitle(updatedGame.getTitle());
         existingGame.setDeveloper(updatedGame.getDeveloper());

@@ -1,44 +1,22 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- html-Language-Service-Context: ./app.ts -->
-<!-- @Component: App -->
-
-<div style="text-align: center; margin-top: 50px; font-family: Arial, sans-serif;">
-  <h1>Witamy w GameTracker!</h1>
-
-  <!-- 🔬 Używamy tagu kontenera, który sprawdza obecność danych i wstrzykuje odpowiedni szablon -->
-  <ng-container *ngIf="gameData(); else loadingTpl">
-    <div style="border: 2px solid #333; padding: 20px; display: inline-block; border-radius: 8px; background-color: #f9f9f9;">
-      <h2>{{ gameData()?.title }}</h2>
-      <p><strong>Deweloper:</strong> {{ gameData()?.developer }}</p>
-      <p><strong>Ocena Społeczności:</strong> ⭐ {{ gameData()?.rating }}/10</p>
-      <p style="max-width: 400px; margin: 0 auto; font-style: italic;">
-        {{ gameData()?.review }}
-      </p>
-    </div>
-  </ng-container>
-
-
-  <ng-template #loadingTpl>
-    <div>
-      <p>Oczekiwanie na odpowiedź serwera Spring Boot (Port 8080)...</p>
-    </div>
-  </ng-template>
-</div>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
 
+
+
+
+
+
+
+<h1>Witaj w {{ title }}!</h1>
+
+<h2>Moja kolekcja gier:</h2>
+
+<ul>
+    @for (game of games; track game.id) {
+    <li>
+      <strong>{{ game.title }}</strong> - Gatunek: {{ game.genre }} (Ocena: {{ game.rating }}/10)
+    </li>
+    } @empty {
+    <li>Brak gier w bazie!</li>
+    }
+</ul>

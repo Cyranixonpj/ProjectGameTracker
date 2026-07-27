@@ -12,11 +12,13 @@
 <h2>Moja kolekcja gier:</h2>
 
 <ul>
-    @for (game of games; track game.id) {
+  @for (game of games(); track game.id) {
     <li>
-      <strong>{{ game.title }}</strong> - Gatunek: {{ game.genre }} (Ocena: {{ game.rating }}/10)
+      <strong>{{ game.title }}</strong> - Deweloper: {{ game.developer }} (Ocena: {{ game.rating }}/10)
+      <p><i>Recenzja: {{ game.review }}</i></p>
     </li>
-    } @empty {
+  } @empty {
     <li>Brak gier w bazie!</li>
-    }
+  }
 </ul>
+<h3>Średnia ocen moich gier: {{ averageRating() }}</h3>

@@ -26,5 +26,13 @@ services:
     depends_on:
       - postgres-db
 
+  frontend:
+    build: ./gametracker-frontend
+    container_name: gametracker-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
 volumes:
   postgres_data:
